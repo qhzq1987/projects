@@ -1,0 +1,520 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D6082CA3209B071100A5920B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CA2209B071100A5920B /* AppDelegate.swift */; };
+		D6082CA5209B071100A5920B /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CA4209B071100A5920B /* DashboardViewController.swift */; };
+		D6082CA8209B071100A5920B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6082CA6209B071100A5920B /* Main.storyboard */; };
+		D6082CAA209B071300A5920B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6082CA9209B071300A5920B /* Assets.xcassets */; };
+		D6082CAD209B071300A5920B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6082CAB209B071300A5920B /* LaunchScreen.storyboard */; };
+		D6082CB9209B08B700A5920B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CB8209B08B700A5920B /* HomeViewController.swift */; };
+		D6082CBB209B08C800A5920B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CBA209B08C800A5920B /* HistoryViewController.swift */; };
+		D6082CBD209B08D200A5920B /* MyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CBC209B08D200A5920B /* MyViewController.swift */; };
+		D6082CC0209B09D000A5920B /* NSHfhVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CBF209B09D000A5920B /* NSHfhVar.swift */; };
+		D6082CC2209B09F100A5920B /* NSHfhFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CC1209B09F100A5920B /* NSHfhFunc.swift */; };
+		D6082CC6209B0B2600A5920B /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CC5209B0B2600A5920B /* AccountViewController.swift */; };
+		D6082CCA209B0B4200A5920B /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CC9209B0B4200A5920B /* SettingViewController.swift */; };
+		D6082CCC209B0B4F00A5920B /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CCB209B0B4F00A5920B /* AboutUsViewController.swift */; };
+		D6082CD4209B0DE400A5920B /* UIHfhViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CCF209B0DE400A5920B /* UIHfhViewController.swift */; };
+		D6082CD8209B0FF700A5920B /* MyViewController.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6082CD7209B0FF700A5920B /* MyViewController.plist */; };
+		D6082CDC209D819B00A5920B /* UIHfhCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CDB209D819B00A5920B /* UIHfhCells.swift */; };
+		D6082CDE209D876A00A5920B /* UIHfhKits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CDD209D876A00A5920B /* UIHfhKits.swift */; };
+		D6082CE2209D8B1500A5920B /* AccountViewController.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6082CE1209D8B1500A5920B /* AccountViewController.plist */; };
+		D6082CEA209DF85F00A5920B /* UIHfhCellsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6082CE9209DF85F00A5920B /* UIHfhCellsView.swift */; };
+		D6C5496220AAA8DA00E08258 /* NSHfhPeripherals.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6C5496120AAA8DA00E08258 /* NSHfhPeripherals.swift */; };
+		D6D4D4B920BD68F4009E9F41 /* PatientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D4D4B720BD68F4009E9F41 /* PatientViewController.swift */; };
+		D6D4D4BA20BD68F4009E9F41 /* DevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D4D4B820BD68F4009E9F41 /* DevicesViewController.swift */; };
+		D6D4D4BC20BD6A27009E9F41 /* PatientViewController.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D4D4BB20BD6A27009E9F41 /* PatientViewController.plist */; };
+		D6D9633B20BFD5AE00645C39 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D9633020BFD5AE00645C39 /* FMDatabaseQueue.m */; };
+		D6D9633C20BFD5AE00645C39 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D9633320BFD5AE00645C39 /* FMDatabaseAdditions.m */; };
+		D6D9633D20BFD5AE00645C39 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D9633420BFD5AE00645C39 /* FMDatabase.m */; };
+		D6D9633E20BFD5AE00645C39 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D9633820BFD5AE00645C39 /* FMDatabasePool.m */; };
+		D6D9633F20BFD5AE00645C39 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D9633920BFD5AE00645C39 /* FMResultSet.m */; };
+		D6D9634020BFD5AE00645C39 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6D9633A20BFD5AE00645C39 /* Info.plist */; };
+		D6FE1AA620C5652400F9E860 /* alarm_high.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6FE1AA420C5652300F9E860 /* alarm_high.mp3 */; };
+		D6FE1AA720C5652400F9E860 /* alarm_low.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D6FE1AA520C5652300F9E860 /* alarm_low.mp3 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D6082C9F209B071100A5920B /* Thermometer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thermometer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6082CA2209B071100A5920B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D6082CA4209B071100A5920B /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		D6082CA7209B071100A5920B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D6082CA9209B071300A5920B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D6082CAC209B071300A5920B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D6082CAE209B071300A5920B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6082CB8209B08B700A5920B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		D6082CBA209B08C800A5920B /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		D6082CBC209B08D200A5920B /* MyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewController.swift; sourceTree = "<group>"; };
+		D6082CBF209B09D000A5920B /* NSHfhVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSHfhVar.swift; sourceTree = "<group>"; };
+		D6082CC1209B09F100A5920B /* NSHfhFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSHfhFunc.swift; sourceTree = "<group>"; };
+		D6082CC5209B0B2600A5920B /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		D6082CC9209B0B4200A5920B /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		D6082CCB209B0B4F00A5920B /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		D6082CCF209B0DE400A5920B /* UIHfhViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIHfhViewController.swift; sourceTree = "<group>"; };
+		D6082CD7209B0FF700A5920B /* MyViewController.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MyViewController.plist; sourceTree = "<group>"; };
+		D6082CDB209D819B00A5920B /* UIHfhCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHfhCells.swift; sourceTree = "<group>"; };
+		D6082CDD209D876A00A5920B /* UIHfhKits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHfhKits.swift; sourceTree = "<group>"; };
+		D6082CE1209D8B1500A5920B /* AccountViewController.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AccountViewController.plist; sourceTree = "<group>"; };
+		D6082CE9209DF85F00A5920B /* UIHfhCellsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHfhCellsView.swift; sourceTree = "<group>"; };
+		D6C5496120AAA8DA00E08258 /* NSHfhPeripherals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSHfhPeripherals.swift; sourceTree = "<group>"; };
+		D6D4D4B720BD68F4009E9F41 /* PatientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientViewController.swift; sourceTree = "<group>"; };
+		D6D4D4B820BD68F4009E9F41 /* DevicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicesViewController.swift; sourceTree = "<group>"; };
+		D6D4D4BB20BD6A27009E9F41 /* PatientViewController.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PatientViewController.plist; sourceTree = "<group>"; };
+		D6D9632F20BFD5AE00645C39 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		D6D9633020BFD5AE00645C39 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		D6D9633120BFD5AE00645C39 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		D6D9633220BFD5AE00645C39 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		D6D9633320BFD5AE00645C39 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		D6D9633420BFD5AE00645C39 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		D6D9633520BFD5AE00645C39 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		D6D9633620BFD5AE00645C39 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		D6D9633720BFD5AE00645C39 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		D6D9633820BFD5AE00645C39 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		D6D9633920BFD5AE00645C39 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		D6D9633A20BFD5AE00645C39 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6D9634120BFD6A300645C39 /* System-BridgeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "System-BridgeHeader.h"; sourceTree = "<group>"; };
+		D6FE1AA420C5652300F9E860 /* alarm_high.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_high.mp3; sourceTree = "<group>"; };
+		D6FE1AA520C5652300F9E860 /* alarm_low.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarm_low.mp3; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D6082C9C209B071100A5920B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6082C96209B071100A5920B = {
+			isa = PBXGroup;
+			children = (
+				D6082CA1209B071100A5920B /* Thermometer */,
+				D6082CA0209B071100A5920B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D6082CA0209B071100A5920B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D6082C9F209B071100A5920B /* Thermometer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D6082CA1209B071100A5920B /* Thermometer */ = {
+			isa = PBXGroup;
+			children = (
+				D6082CA2209B071100A5920B /* AppDelegate.swift */,
+				D6082CA4209B071100A5920B /* DashboardViewController.swift */,
+				D6082CA6209B071100A5920B /* Main.storyboard */,
+				D6082CA9209B071300A5920B /* Assets.xcassets */,
+				D6082CAB209B071300A5920B /* LaunchScreen.storyboard */,
+				D6082CAE209B071300A5920B /* Info.plist */,
+				D6D9634120BFD6A300645C39 /* System-BridgeHeader.h */,
+				D6FE1AA520C5652300F9E860 /* alarm_low.mp3 */,
+				D6FE1AA420C5652300F9E860 /* alarm_high.mp3 */,
+				D6D9632D20BFD5A000645C39 /* 3rdLibrary */,
+				D6082CB7209B085400A5920B /* Dashboard */,
+				D6D4D4B620BD68E6009E9F41 /* Home */,
+				D6082CB6209B084100A5920B /* My */,
+				D6082CBE209B099F00A5920B /* Share */,
+			);
+			path = Thermometer;
+			sourceTree = "<group>";
+		};
+		D6082CB6209B084100A5920B /* My */ = {
+			isa = PBXGroup;
+			children = (
+				D6082CC5209B0B2600A5920B /* AccountViewController.swift */,
+				D6082CE1209D8B1500A5920B /* AccountViewController.plist */,
+				D6082CC9209B0B4200A5920B /* SettingViewController.swift */,
+				D6082CCB209B0B4F00A5920B /* AboutUsViewController.swift */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		D6082CB7209B085400A5920B /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				D6082CB8209B08B700A5920B /* HomeViewController.swift */,
+				D6082CBC209B08D200A5920B /* MyViewController.swift */,
+				D6082CD7209B0FF700A5920B /* MyViewController.plist */,
+				D6082CBA209B08C800A5920B /* HistoryViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		D6082CBE209B099F00A5920B /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				D6082CDD209D876A00A5920B /* UIHfhKits.swift */,
+				D6082CCF209B0DE400A5920B /* UIHfhViewController.swift */,
+				D6082CC1209B09F100A5920B /* NSHfhFunc.swift */,
+				D6082CBF209B09D000A5920B /* NSHfhVar.swift */,
+				D6C5496120AAA8DA00E08258 /* NSHfhPeripherals.swift */,
+				D6082CDB209D819B00A5920B /* UIHfhCells.swift */,
+				D6082CE9209DF85F00A5920B /* UIHfhCellsView.swift */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		D6D4D4B620BD68E6009E9F41 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D6D4D4B820BD68F4009E9F41 /* DevicesViewController.swift */,
+				D6D4D4B720BD68F4009E9F41 /* PatientViewController.swift */,
+				D6D4D4BB20BD6A27009E9F41 /* PatientViewController.plist */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D6D9632D20BFD5A000645C39 /* 3rdLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				D6D9632E20BFD5AE00645C39 /* fmdb */,
+			);
+			path = 3rdLibrary;
+			sourceTree = "<group>";
+		};
+		D6D9632E20BFD5AE00645C39 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				D6D9632F20BFD5AE00645C39 /* FMDatabase.h */,
+				D6D9633020BFD5AE00645C39 /* FMDatabaseQueue.m */,
+				D6D9633120BFD5AE00645C39 /* FMResultSet.h */,
+				D6D9633220BFD5AE00645C39 /* FMDatabasePool.h */,
+				D6D9633320BFD5AE00645C39 /* FMDatabaseAdditions.m */,
+				D6D9633420BFD5AE00645C39 /* FMDatabase.m */,
+				D6D9633520BFD5AE00645C39 /* FMDatabaseQueue.h */,
+				D6D9633620BFD5AE00645C39 /* FMDB.h */,
+				D6D9633720BFD5AE00645C39 /* FMDatabaseAdditions.h */,
+				D6D9633820BFD5AE00645C39 /* FMDatabasePool.m */,
+				D6D9633920BFD5AE00645C39 /* FMResultSet.m */,
+				D6D9633A20BFD5AE00645C39 /* Info.plist */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D6082C9E209B071100A5920B /* Thermometer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D6082CB1209B071300A5920B /* Build configuration list for PBXNativeTarget "Thermometer" */;
+			buildPhases = (
+				D6082C9B209B071100A5920B /* Sources */,
+				D6082C9C209B071100A5920B /* Frameworks */,
+				D6082C9D209B071100A5920B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Thermometer;
+			productName = Thermometer;
+			productReference = D6082C9F209B071100A5920B /* Thermometer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D6082C97209B071100A5920B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = HeFahu;
+				TargetAttributes = {
+					D6082C9E209B071100A5920B = {
+						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = D6082C9A209B071100A5920B /* Build configuration list for PBXProject "Thermometer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D6082C96209B071100A5920B;
+			productRefGroup = D6082CA0209B071100A5920B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D6082C9E209B071100A5920B /* Thermometer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D6082C9D209B071100A5920B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6082CAD209B071300A5920B /* LaunchScreen.storyboard in Resources */,
+				D6082CD8209B0FF700A5920B /* MyViewController.plist in Resources */,
+				D6082CE2209D8B1500A5920B /* AccountViewController.plist in Resources */,
+				D6FE1AA620C5652400F9E860 /* alarm_high.mp3 in Resources */,
+				D6082CAA209B071300A5920B /* Assets.xcassets in Resources */,
+				D6082CA8209B071100A5920B /* Main.storyboard in Resources */,
+				D6FE1AA720C5652400F9E860 /* alarm_low.mp3 in Resources */,
+				D6D9634020BFD5AE00645C39 /* Info.plist in Resources */,
+				D6D4D4BC20BD6A27009E9F41 /* PatientViewController.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D6082C9B209B071100A5920B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6D4D4BA20BD68F4009E9F41 /* DevicesViewController.swift in Sources */,
+				D6082CA5209B071100A5920B /* DashboardViewController.swift in Sources */,
+				D6082CCA209B0B4200A5920B /* SettingViewController.swift in Sources */,
+				D6C5496220AAA8DA00E08258 /* NSHfhPeripherals.swift in Sources */,
+				D6D9633E20BFD5AE00645C39 /* FMDatabasePool.m in Sources */,
+				D6082CDE209D876A00A5920B /* UIHfhKits.swift in Sources */,
+				D6D9633D20BFD5AE00645C39 /* FMDatabase.m in Sources */,
+				D6082CC0209B09D000A5920B /* NSHfhVar.swift in Sources */,
+				D6D9633F20BFD5AE00645C39 /* FMResultSet.m in Sources */,
+				D6082CD4209B0DE400A5920B /* UIHfhViewController.swift in Sources */,
+				D6082CEA209DF85F00A5920B /* UIHfhCellsView.swift in Sources */,
+				D6082CDC209D819B00A5920B /* UIHfhCells.swift in Sources */,
+				D6082CA3209B071100A5920B /* AppDelegate.swift in Sources */,
+				D6082CCC209B0B4F00A5920B /* AboutUsViewController.swift in Sources */,
+				D6D4D4B920BD68F4009E9F41 /* PatientViewController.swift in Sources */,
+				D6082CB9209B08B700A5920B /* HomeViewController.swift in Sources */,
+				D6D9633C20BFD5AE00645C39 /* FMDatabaseAdditions.m in Sources */,
+				D6082CBD209B08D200A5920B /* MyViewController.swift in Sources */,
+				D6082CC2209B09F100A5920B /* NSHfhFunc.swift in Sources */,
+				D6082CBB209B08C800A5920B /* HistoryViewController.swift in Sources */,
+				D6082CC6209B0B2600A5920B /* AccountViewController.swift in Sources */,
+				D6D9633B20BFD5AE00645C39 /* FMDatabaseQueue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D6082CA6209B071100A5920B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6082CA7209B071100A5920B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D6082CAB209B071300A5920B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D6082CAC209B071300A5920B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D6082CAF209B071300A5920B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D6082CB0209B071300A5920B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D6082CB2209B071300A5920B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 24848788N3;
+				INFOPLIST_FILE = Thermometer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.e-trans.CloudMotorcade";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5b8c7426-4eb8-4f1d-9a46-f51396e9a97b";
+				PROVISIONING_PROFILE_SPECIFIER = "TigerTest-06-09";
+				SWIFT_OBJC_BRIDGING_HEADER = "Thermometer/System-BridgeHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D6082CB3209B071300A5920B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 24848788N3;
+				INFOPLIST_FILE = Thermometer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "cn.com.e-trans.CloudMotorcade";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5b8c7426-4eb8-4f1d-9a46-f51396e9a97b";
+				PROVISIONING_PROFILE_SPECIFIER = "TigerTest-06-09";
+				SWIFT_OBJC_BRIDGING_HEADER = "Thermometer/System-BridgeHeader.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D6082C9A209B071100A5920B /* Build configuration list for PBXProject "Thermometer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6082CAF209B071300A5920B /* Debug */,
+				D6082CB0209B071300A5920B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D6082CB1209B071300A5920B /* Build configuration list for PBXNativeTarget "Thermometer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D6082CB2209B071300A5920B /* Debug */,
+				D6082CB3209B071300A5920B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D6082C97209B071100A5920B /* Project object */;
+}

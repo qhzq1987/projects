@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="吉瑞达" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7c-iS-BhG">
+                                <rect key="frame" x="135.5" y="331" width="104" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Yza-kZ-C1z"/>
+                                    <constraint firstAttribute="width" constant="104" id="bsb-7l-9mv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="67"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vqH-Y2-28d">
+                                <rect key="frame" x="15" y="591" width="345" height="62"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="吉瑞达医检 V1.0.181023" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofc-Sz-Hzq">
+                                        <rect key="frame" x="41" y="0.0" width="284" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="JI RUI DA YI JIAN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPm-Z5-X25">
+                                        <rect key="frame" x="42" y="28" width="284" height="29"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="launch_small_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WJB-h2-3KM">
+                                        <rect key="frame" x="8" y="9" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="345" id="T9I-Cc-tXB"/>
+                                    <constraint firstAttribute="height" constant="62" id="ean-KL-rCA"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="system_logo" translatesAutoresizingMaskIntoConstraints="NO" id="jaR-KA-Pfr">
+                                <rect key="frame" x="100" y="148" width="175" height="175"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="175" id="bfQ-kr-MVU"/>
+                                    <constraint firstAttribute="height" constant="175" id="cnJ-L3-abY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.30980392156862746" green="0.64313725490196072" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="vqH-Y2-28d" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="JjI-tK-RmS"/>
+                            <constraint firstItem="jaR-KA-Pfr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="MYY-78-B16"/>
+                            <constraint firstItem="d7c-iS-BhG" firstAttribute="top" secondItem="jaR-KA-Pfr" secondAttribute="bottom" constant="8" id="Ta4-fm-QJU"/>
+                            <constraint firstItem="d7c-iS-BhG" firstAttribute="centerX" secondItem="vqH-Y2-28d" secondAttribute="centerX" id="vrb-Tr-03x"/>
+                            <constraint firstItem="jaR-KA-Pfr" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" multiplier="0.7" constant="134" id="zwQ-d2-oIz"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="vqH-Y2-28d" secondAttribute="bottom" constant="14" id="zya-6k-TeG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45.3125" y="367.96875"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="launch_small_logo" width="60" height="60"/>
+        <image name="system_logo" width="128" height="128"/>
+    </resources>
+</document>

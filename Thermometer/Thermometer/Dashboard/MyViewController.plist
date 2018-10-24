@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>个人信息</string>
+			<key>tagImage</key>
+			<string>db_my_account_info</string>
+			<key>showIndictor</key>
+			<string>1</string>
+			<key>nextClass</key>
+			<string>AccountViewController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>高低温报警设置</string>
+			<key>tagImage</key>
+			<string>db_my_setting</string>
+			<key>showIndictor</key>
+			<string>1</string>
+			<key>nextClass</key>
+			<string>SettingViewController</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>关于我们</string>
+			<key>tagImage</key>
+			<string>db_my_about_us</string>
+			<key>showIndictor</key>
+			<string>1</string>
+			<key>nextClass</key>
+			<string>AboutUsViewController</string>
+		</dict>
+	</array>
+</array>
+</plist>

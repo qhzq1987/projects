@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<dict>
+			<key>placeholder</key>
+			<string>请输入科室</string>
+			<key>name</key>
+			<string>科室</string>
+			<key>valueKey</key>
+			<string>department</string>
+		</dict>
+		<dict>
+			<key>placeholder</key>
+			<string>请输入病区床号</string>
+			<key>name</key>
+			<string>病区床号</string>
+			<key>valueKey</key>
+			<string>serialNumber</string>
+		</dict>
+		<dict>
+			<key>placeholder</key>
+			<string>请输入患者姓名</string>
+			<key>name</key>
+			<string>患者姓名</string>
+			<key>valueKey</key>
+			<string>name</string>
+		</dict>
+	</array>
+</array>
+</plist>
