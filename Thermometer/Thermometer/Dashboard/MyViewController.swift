@@ -235,12 +235,6 @@ class MyViewController: UIHfhTableViewController, UIImagePickerControllerDelegat
     
     private func img() -> UIImage? {
         
-        /*//头像
-        if let imgData = NSHfhFunc.readData2Document(with: "\(NSHfhVar.userInfo["id"]!)" + NSHfhVar.hdImg2LoginUser) {
-            if let tempImg = UIImage(data: imgData) {
-                return tempImg
-            }
-        }*/
         //默认头像
         return UIImage(named: "db_my_head_default")
     }

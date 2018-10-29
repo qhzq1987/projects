@@ -40,16 +40,17 @@ class SettingViewController: UIHfhBaseViewController, UITextFieldDelegate {
     
     override func viewControllWillDisappear() -> Bool {
         
+        //值
+        NSHfhVar.alarmMin = CGFloat(minSlider.value)
+        NSHfhVar.alarmMax = CGFloat(maxSlider.value)
+        NSHfhVar.isAlarm = alarmSwitch.isOn
         //本地设置
         let usrDefault = UserDefaults.standard
         //是否为空？
-        guard var tempData = usrDefault.dictionary(forKey: NSHfhVar.SETTING_VALUES_KEY) else {
-            return true
-        }
-        tempData[NSHfhVar.LOW_TMPT_KEY] = minSlider.value
-        tempData[NSHfhVar.HIGH_TMPT_KEY] = maxSlider.value
+        let tempData = ["alarmMin": NSHfhVar.alarmMin, "alarmMax": NSHfhVar.alarmMax, "isAlarm": NSHfhVar.isAlarm]
+            as [String : Any]
         //保存
-        usrDefault.setValue(tempData, forKey: NSHfhVar.SETTING_VALUES_KEY)
+        usrDefault.setValue(tempData, forKey: NSHfhVar.fileName2AlarmSetting)
         usrDefault.synchronize()
         //返回
         return true
@@ -94,6 +95,8 @@ class SettingViewController: UIHfhBaseViewController, UITextFieldDelegate {
         self.scrollView.addSubview(bgView)
         //初始值
         upateValues()
+        //打开还是关闭？
+        resizeView(NSHfhVar.isAlarm)
     }
     
     private func itemViews(_ hUnit: CGFloat) -> Void {
@@ -114,9 +117,12 @@ class SettingViewController: UIHfhBaseViewController, UITextFieldDelegate {
         alarmSwitch = UIHfhSwitch(frame: CGRect(x: bgView.frame.size.width - lrVal - wSwitch, y: 0.5 * (hUnit - hSwitch),
                                                 width: wSwitch, height: hSwitch))
         alarmSwitch.loadCustomView { [unowned self] (hfhSwitch: UIHfhSwitch, isOn: Bool) in
+            //打开还是关闭？
+            NSHfhVar.isAlarm = isOn
+            //修改RECT值
             self.resizeView(isOn)
         }
-        alarmSwitch.isOn = true
+        alarmSwitch.isOn = NSHfhVar.isAlarm
         //分隔线
         let lineView = UIView(frame: CGRect(x: 0.0, y: alarmLabel.frame.maxY,
                                             width: bgView.frame.size.width, height: NSHfhVar.whSeparator))
@@ -140,51 +146,38 @@ class SettingViewController: UIHfhBaseViewController, UITextFieldDelegate {
         bgView.addSubview(lineView)
     }
     
-    private func resizeView(_ isOn: Bool) -> Void {
+    private func resizeView(_ isOn: Bool, with animating: Bool = true) -> Void {
         
-        //本地设置
-        let usrDefault = UserDefaults.standard
         //单位高度
         let hUnit: CGFloat = 54.0
+        //高度值
+        var tempVal: CGFloat = 1.0
+        if false != isOn {
+            tempVal = 3.0
+        }
         //RECT值
         var rect = bgView.frame
-        //打开还是关闭？
-        if true != isOn {
-            rect.size.height = hUnit
-            //删除
-            usrDefault.removeObject(forKey: NSHfhVar.SETTING_VALUES_KEY)
-            usrDefault.synchronize()
+        rect.size.height = tempVal * hUnit
+        //动画方式？
+        if true == animating {
+            UIView.animate(withDuration: 0.25) { self.bgView.frame = rect
+            }
         }
         else {
-            rect.size.height = 3.0 * hUnit
-            //设定温度范围值
-            let tempData = [NSHfhVar.MIN_TMPT_KEY: NSHfhVar.MIN_TEMP_VALUE, NSHfhVar.MAX_TMPT_KEY: NSHfhVar.MAX_TEMP_VALUE,
-                            NSHfhVar.LOW_TMPT_KEY: minSlider.value, NSHfhVar.HIGH_TMPT_KEY: maxSlider.value]
-            usrDefault.setValue(tempData, forKey: NSHfhVar.SETTING_VALUES_KEY)
-            usrDefault.synchronize()
-        }
-        //动画方式
-        UIView.animate(withDuration: 0.25) {
-            self.bgView.frame = rect
+            bgView.frame = rect
         }
     }
     
     private func upateValues() -> Void {
         
-        //本地设置
-        let usrDefault = UserDefaults.standard
-        //是否为空？
-        guard let tempData = usrDefault.dictionary(forKey: NSHfhVar.SETTING_VALUES_KEY) else {
-            return
-        }
         //当前最小大温度
-        minSlider.minimumValue = tempData[NSHfhVar.MIN_TMPT_KEY] as? Float ?? 0.0
-        minSlider.maximumValue = tempData[NSHfhVar.MAX_TMPT_KEY] as? Float ?? 0.0
+        minSlider.minimumValue = Float(NSHfhVar.lowBoundary)
+        minSlider.maximumValue =  Float(NSHfhVar.highBoundary)
         maxSlider.minimumValue = minSlider.minimumValue
         maxSlider.maximumValue = minSlider.maximumValue
         //阈值
-        minSlider.value = tempData[NSHfhVar.LOW_TMPT_KEY] as? Float ?? 0.0
-        maxSlider.value = tempData[NSHfhVar.HIGH_TMPT_KEY] as? Float ?? 0.0
+        minSlider.value = Float(NSHfhVar.alarmMin)
+        maxSlider.value = Float(NSHfhVar.alarmMax)
         //显示默认值
         minTextField.text = String(format: "%0.1f", minSlider.value)
         maxTextField.text = String(format: "%0.1f", maxSlider.value)
@@ -222,8 +215,6 @@ class SettingViewController: UIHfhBaseViewController, UITextFieldDelegate {
         case -1:
             //低
             minTextField.text = String(format: "%0.1f", sender.value)
-            //最高温的最低值不能小于最低温的最大值
-            //maxSlider.minimumValue = minSlider.value
         default:
             maxTextField.text = String(format: "%0.1f", sender.value)
         }

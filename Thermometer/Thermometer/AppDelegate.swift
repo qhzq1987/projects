@@ -24,18 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         //数据库
         database()
-        //本地设置
-        let usrDefault = UserDefaults.standard
-        //是否为空？
-        guard let _ = usrDefault.dictionary(forKey: NSHfhVar.SETTING_VALUES_KEY) else {
-            //设定温度范围值
-            let tempData = [NSHfhVar.MIN_TMPT_KEY: NSHfhVar.MIN_TEMP_VALUE, NSHfhVar.MAX_TMPT_KEY: NSHfhVar.MAX_TEMP_VALUE,
-                            NSHfhVar.LOW_TMPT_KEY: NSHfhVar.MIN_TEMP_VALUE, NSHfhVar.HIGH_TMPT_KEY: NSHfhVar.MAX_TEMP_VALUE]
-            usrDefault.setValue(tempData, forKey: NSHfhVar.SETTING_VALUES_KEY)
-            usrDefault.synchronize()
-            //返回
-            return true
-        }
+        //最大最小值
+        mmValues()
         //返回
         return true
     }
@@ -61,20 +51,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         db.close()
     }
     
-    /*func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+    private func mmValues() -> Void {
         
-        //如果是pad类型，则进行旋转
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return [.portrait, .landscapeLeft, .landscapeRight]
+        //结果
+        var resultData = Dictionary<String, Any>()
+        //是否为空？
+        if let tempData = UserDefaults.standard.dictionary(forKey: NSHfhVar.fileName2AlarmSetting) {
+            resultData = tempData
         }
-        //默认不进行旋转
-        return [.portrait]
-    }*/
-    
-    /*func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        
-        return [.portrait, .landscapeLeft, .landscapeRight]
-    }*/
+        //当前值
+        NSHfhVar.isAlarm = resultData["isAlarm"] as? Bool ?? true
+        NSHfhVar.alarmMin = resultData["alarmMin"] as? CGFloat ?? NSHfhVar.lowBoundary
+        NSHfhVar.alarmMax = resultData["alarmMax"] as? CGFloat ?? NSHfhVar.highBoundary
+    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -88,8 +77,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        
-        
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

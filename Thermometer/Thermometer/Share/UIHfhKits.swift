@@ -1337,7 +1337,6 @@ class UIHfhSwitch: UIView {
             rect.origin.x = 0.0
             circleView.backgroundColor = currCircleColor
         }
-        
         //动画方式修改
         UIView.animate(withDuration: 0.25) {
             self.circleView.frame = rect

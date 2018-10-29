@@ -21,6 +21,8 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
     private var trendView: HomeTrendView!
     //报警音乐
     private var audioPlayer: AVAudioPlayer!
+    //比例值
+    private var currRatio: CGFloat = 0.0
     
     //定时刷新数据
     private var requestTimer: DispatchSourceTimer!, stateTimer: DispatchSourceTimer!
@@ -46,16 +48,17 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         initViews()
         //不锁屏
         UIApplication.shared.isIdleTimerDisabled = true
+        //比例值
+        currRatio = 1.0 / NSHfhVar.highBoundary
         
-        //注：以下仅做测试时使用
-        /*timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(etstTime(_:)), userInfo: nil, repeats: true)
-        timer.fire()
-        */
+        /*//注：以下仅做测试时使用
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(estTimer(_:)), userInfo: nil, repeats: true)
+        timer.fire()*/
     }
 
-    @objc func etstTime(_ tim: Timer) {
+    @objc func estTimer(_ tim: Timer) {
 
-        let tempVal = arc4random() % UInt32(NSHfhVar.MAX_TEMP_VALUE) + 1
+        let tempVal = arc4random() % UInt32(NSHfhVar.highBoundary + 1)
         print("模拟温度值 = \(tempVal)")
         NotificationCenter.default.post(name: NSHfhPeripherals.shared.NOTI_VALUE_CHANGED, object: tempVal)
         //启动定时器
@@ -67,10 +70,6 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         
         //委托
         NSHfhPeripherals.shared.delegate = self
-        //是否为空？
-        if nil != rateView {
-            rateView.resetData()
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -152,13 +151,6 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         self.scrollView.addSubview(rateView)
         //右上角按钮
         self.navigationItem.rightBarButtonItem = rightItem()
-        /*//是否登录？
-        if "1" != NSHfhVar.userInfo["logined"] as? String {
-            return showLoginNoti(self)
-        }
-        //已登录成功
-        loginSuccess()
-        */
         //基本信息
         showPatientNoti(self)
         //背景颜色为黑色
@@ -199,14 +191,6 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         //登录消息
         center.addObserver(self, selector: #selector(showPatientNoti(_:)), name: NSHfhVar.notiLogin, object: nil)
         center.addObserver(self, selector: #selector(tValueChangeNoti(_:)), name: obj.NOTI_VALUE_CHANGED, object: nil)
-    }
-    
-    private func isLogined() -> Bool {
-        
-        //登录标志
-        let tempVal = NSHfhVar.userInfo["logined"] as? String
-        //返回
-        return "1" == tempVal
     }
     
     @objc private func rightBarItemRecognizer(_ sender: UITapGestureRecognizer) -> Void {
@@ -266,12 +250,61 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         guard let tempVal = noti.object as? CGFloat else {
             return
         }
+        //处理温度
+        let resultVal = resetTemperature(tempVal)
         //写入列表
         tempraturesArray.append(tempVal)
-        //更新温度
-        rateView.temperature = tempVal
+        //更新温度、进度条
+        rateView.updateTemperature(resultVal.nValue, with: resultVal.color)
+        rateView.updateProgress(resultVal.nValue * currRatio, with: resultVal.color)
         //更新曲线数据
-        trendView.updateData = tempVal
+        trendView.updateData = resultVal.nValue
+    }
+    
+    private func resetTemperature(_ value: CGFloat) -> (nValue: CGFloat, color: UIColor) {
+        
+        //结果值
+        var tempVal = value
+        if value > NSHfhVar.highBoundary {
+            //不能大于最大
+            tempVal = NSHfhVar.highBoundary
+        }
+        else if value < 0.0 {
+            //不能小于0值
+            tempVal = 0.0
+        }
+        //当前颜色
+        var tempColor = NSHfhVar.themeColor
+        //是否需要报警？
+        if true == NSHfhVar.isAlarm {
+            //如果超过最大值，则红色显示；如果小于最小值，则用绿色表示，正常用系统主色
+            if tempVal >= NSHfhVar.alarmMax {
+                tempColor = 0xFF0000
+                alarm("alarm_high")
+            }
+            else if tempVal <= NSHfhVar.alarmMin {
+                tempColor = 0x00FF00
+                alarm("alarm_low")
+            }
+        }
+        //返回
+        return (tempVal, NSHfhFunc.colorHex(intVal: tempColor))
+    }
+    
+    private func alarm(_ file: String) -> Void {
+        
+        //获取要播放音频文件的URL
+        guard let fileURL = Bundle.main.url(forResource: file, withExtension: ".mp3") else {
+            return
+        }
+        guard let tempAudioPlayer = try? AVAudioPlayer(contentsOf: fileURL) else {
+            return
+        }
+        audioPlayer = tempAudioPlayer
+        audioPlayer.volume = 1.0
+        audioPlayer.numberOfLoops = 0
+        //开始播放
+        audioPlayer.play()
     }
     
     private func requestHandler() -> Void {
@@ -377,25 +410,7 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         //开始
         stateTimer.resume()
     }
-    
-    private func download() -> Void {
-        
-        DispatchQueue(label: "head_image_download").async {
-            //URL地址
-            guard let url = URL(string: NSHfhVar.userInfo["imgUrl"] as? String ?? "") else {
-                return
-            }
-            //是否获取成功？
-            guard let imgData = try? Data(contentsOf: url) else {
-                return
-            }
-            //头像名称
-            let tempVal = "\(NSHfhVar.userInfo["id"]!)" + NSHfhVar.hdImg2LoginUser
-            //保存到本地
-            NSHfhFunc.saveData2Document(imgData, with: tempVal)
-        }
-    }
-    
+
     // MARK: - NSHfhPeripherals Delegate
     
     func peripherals(_ type: NSHfhPeripheralsReturnType, message: String) -> Void {
@@ -523,35 +538,7 @@ fileprivate class HomeRateView: HomeContentView {
     private var radiusVal: CGFloat = 0.0
     //当前温度
     private var valueLabel: UILabel!
-    //阈值
-    private var low: CGFloat = 0.0, high: CGFloat = 0.0
-    //当前最小大温度
-    private var min: CGFloat = 0.0, max: CGFloat = 0.0
-    //比例值
-    private var ratio: CGFloat = 0.0
-    //报警音乐播放
-    private var audioPlayer: AVAudioPlayer!
-    
-    open var temperature: CGFloat {
-        //当前温度值
-        set {
-            //温度不能小于最小，也不能大于最大
-            let currTemperature = resetTemperature(newValue)
-            //温度值
-            let tempVal = attrText(String(format: "%0.1f°C", currTemperature.v), color: currTemperature.c)
-            valueLabel.attributedText = tempVal.v
-            //进度条
-            updateProgress(currTemperature.vf * ratio, color: tempVal.c)
-            //显示
-            bgShapeLayer.isHidden = false
-            zeroView.isHidden = true
-            valueLabel.isHidden = false
-        }
-        get {
-            return 0.0
-        }
-    }
-    
+  
     open var startResize: CGSize {
         //修改RECT值
         set {
@@ -602,22 +589,54 @@ fileprivate class HomeRateView: HomeContentView {
         labelViews(in: size)
     }
     
-    open func resetData() -> Void {
+    open func updateTemperature(_ value: CGFloat, with strokeColor: UIColor) -> Void {
         
-        //本地设置
-        let usrDefault = UserDefaults.standard
+        //间距
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4.0
+        paragraphStyle.alignment = .center
+        //值
+        let tempVal = NSMutableAttributedString(string: String(format: "%0.1f°C", value), attributes:
+            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 26.0),
+             NSAttributedStringKey.foregroundColor: strokeColor, NSAttributedStringKey.paragraphStyle: paragraphStyle
+            ])
+        tempVal.append(NSAttributedString(string: "\r\n当前温度", attributes:
+            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0),
+             NSAttributedStringKey.foregroundColor: NSHfhFunc.colorHex(intVal: NSHfhVar.txt99Color)
+            ]))
+        //温度值
+        valueLabel.attributedText = tempVal
+        //显示
+        bgShapeLayer.isHidden = false
+        zeroView.isHidden = true
+        valueLabel.isHidden = false
+    }
+    
+    open func updateProgress(_ value: CGFloat/*必须在0~1之间*/, with strokeColor: UIColor) -> Void {
+        
         //是否为空？
-        guard let tempData = usrDefault.dictionary(forKey: NSHfhVar.SETTING_VALUES_KEY) else {
-            return
+        if nil != prgShapeLayer {
+            prgShapeLayer.removeFromSuperlayer()
+            prgShapeLayer = nil
         }
-        //当前最小大温度，注：这里最小温度还是按0.0进行计算
-        //min = tempData[NSHfhVar.MIN_TMPT_KEY] as? CGFloat ?? 0.0
-        max = tempData[NSHfhVar.MAX_TMPT_KEY] as? CGFloat ?? 0.0
-        //阈值
-        high = tempData[NSHfhVar.HIGH_TMPT_KEY] as? CGFloat ?? 0.0
-        low = tempData[NSHfhVar.LOW_TMPT_KEY] as? CGFloat ?? 0.0
-        //比例
-        ratio = 1.0 / (abs(min) + abs(max))
+        //4分之pi值
+        let pi4Val: CGFloat = CGFloat.pi / 4.0
+        let startVal = 3.0 * pi4Val
+        //进度
+        prgShapeLayer = shapeLayer(strokeColor, start: startVal, end: startVal + value * (3.0 * CGFloat.pi / 2.0))
+        //先删除之前动画
+        let tempKey = "progressAnimation"
+        prgShapeLayer.removeAnimation(forKey: tempKey)
+        //创建Animation
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = 0.0
+        animation.toValue = 1.0
+        animation.duration = 0.5
+        animation.isAdditive = true
+        //设置layer的animation
+        prgShapeLayer.add(animation, forKey: tempKey)
+        //添加
+        bgLayer.addSublayer(prgShapeLayer)
     }
     
     open func resetLayer() -> Void {
@@ -658,81 +677,6 @@ fileprivate class HomeRateView: HomeContentView {
         //添加
         bgLayer.addSublayer(bgShapeLayer)
     }
-    
-    private func resetTemperature(_ value: CGFloat) -> (v: CGFloat, vf: CGFloat, c: Int) {
-        
-        var tempVal = value
-        //温度不能小于最小，也不能大于最大
-        if value < min {
-            tempVal = min
-        }
-        else if value > max {
-            tempVal = max
-        }
-        //当前颜色
-        var tempColor = NSHfhVar.themeColor
-        //如果超过最大值，则红色显示；如果小于最小值，则用绿色表示，正常用系统主色
-        if tempVal >= high {
-            tempColor = 0xFF0000
-            alarmMusic("alarm_high")
-        }
-        else if tempVal < low {
-            tempColor = 0x00FF00
-            alarmMusic("alarm_low")
-        }
-        //注：如果温度小于0，则在进行ABS计算时会将值处理小，如：-15为最小值，-5为当前测得值，但如果按-5显示肯定是错了！
-        //则正常显示应该是：-5-(-15)，即显示值为10时，才与效果相同
-        var vfVal = tempVal
-        //是否小于0？
-        if tempVal < 0.0 {
-            vfVal = tempVal - min
-        }
-        //返回
-        return (tempVal, vfVal, tempColor)
-    }
-    
-    private func alarmMusic(_ file: String) -> Void {
-        
-        //获取要播放音频文件的URL
-        guard let fileURL = Bundle.main.url(forResource: file, withExtension: ".mp3") else {
-            return
-        }
-        guard let tempAudioPlayer = try? AVAudioPlayer(contentsOf: fileURL) else {
-            return
-        }
-        audioPlayer = tempAudioPlayer
-        audioPlayer.volume = 1.0
-        audioPlayer.numberOfLoops = 0
-        //开始播放
-        audioPlayer.play()
-    }
-    
-    private func updateProgress(_ value: CGFloat/*必须在0~1之间*/, color: UIColor) -> Void {
-        
-        //是否为空？
-        if nil != prgShapeLayer {
-            prgShapeLayer.removeFromSuperlayer()
-            prgShapeLayer = nil
-        }
-        //4分之pi值
-        let pi4Val: CGFloat = CGFloat.pi / 4.0
-        let startVal = 3.0 * pi4Val
-        //进度
-        prgShapeLayer = shapeLayer(color, start: startVal, end: startVal + value * (3.0 * CGFloat.pi / 2.0))
-        //先删除之前动画
-        let tempKey = "progressAnimation"
-        prgShapeLayer.removeAnimation(forKey: tempKey)
-        //创建Animation
-        let animation = CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0.0
-        animation.toValue = 1.0
-        animation.duration = 0.5
-        animation.isAdditive = true
-        //设置layer的animation
-        prgShapeLayer.add(animation, forKey: tempKey)
-        //添加
-        bgLayer.addSublayer(prgShapeLayer)
-    }
 
     private func shapeLayer(_ strokeColor: UIColor, start: CGFloat, end: CGFloat) -> CAShapeLayer {
         
@@ -762,27 +706,6 @@ fileprivate class HomeRateView: HomeContentView {
         //添加
         self.addSubview(valueLabel)
     }
-    
-    private func attrText(_ text: String, color: Int) -> (v: NSAttributedString, c: UIColor) {
-        
-        //间距
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4.0
-        paragraphStyle.alignment = .center
-        //温度颜色
-        let tempColor = NSHfhFunc.colorHex(intVal: color)
-        //值
-        let tempVal = NSMutableAttributedString(string: text, attributes:
-            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 26.0),
-             NSAttributedStringKey.foregroundColor: tempColor, NSAttributedStringKey.paragraphStyle: paragraphStyle
-            ])
-        tempVal.append(NSAttributedString(string: "\r\n当前温度", attributes:
-            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0),
-             NSAttributedStringKey.foregroundColor: NSHfhFunc.colorHex(intVal: NSHfhVar.txt99Color)
-            ]))
-        //返回
-        return (tempVal, tempColor)
-    }
 }
 
 // MARK: -
@@ -804,18 +727,20 @@ fileprivate class HomeTrendView: HomeContentView {
         //更新
         set {
             tView.appendData = newValue
-            //是否需要刷新？
-            if tView.ptsCount > 1 {
-                //显示、隐藏
-                tView.isHidden = false
-                zeroView.isHidden = true
-                //坐标轴
-                yAxisView.isHidden = false
-                for yAxis in yAxisArray { yAxis.isHidden = false
-                }
-                //刷新
-                tView.setNeedsDisplay()
+            //至少有2个点才能绘制线条
+            if tView.ptsCount < 2 {
+                tView.appendData = newValue
             }
+            //显示、隐藏
+            tView.isHidden = false
+            gridView.isHidden = false
+            zeroView.isHidden = true
+            //坐标轴
+            yAxisView.isHidden = false
+            for yAxis in yAxisArray { yAxis.isHidden = false
+            }
+            //刷新
+            tView.setNeedsDisplay()
         }
         get {
             return 0.0
@@ -846,7 +771,7 @@ fileprivate class HomeTrendView: HomeContentView {
             //缺省
             zeroView.startResize = self.frame.size
             //网格
-            gridViews()
+            resizeGridViews()
         }
         get {
             return self.frame.size
@@ -861,18 +786,16 @@ fileprivate class HomeTrendView: HomeContentView {
         //高度
         let hTotal = size.height - TITLE_HEIGHT_VALUE
         //趋势图
-        tView = TradeView(frame: CGRect(x: insets.left, y: TITLE_HEIGHT_VALUE + insets.top, width: size.width - insets.left - insets.right,
-                                        height: hTotal - insets.top - insets.bottom))
+        tView = TradeView(frame: CGRect(x: insets.left, y: TITLE_HEIGHT_VALUE + insets.top,
+                                        width: size.width - insets.left - insets.right, height: hTotal - insets.top - insets.bottom))
         tView.isHidden = true
         tView.backgroundColor = UIColor.black
         //添加
         self.addSubview(tView)
         //y轴
         yAxisViews(in: size)
-        //x轴：一定要在y轴创建后面
-        //xAxisViews(in: size)
         //网络，注：一定要在y轴创建后面
-        gridViews()
+        layerGridViews()
     }
     
     open func resetLayer() -> Void {
@@ -946,35 +869,17 @@ fileprivate class HomeTrendView: HomeContentView {
         self.addSubview(yAxisView)
     }
     
-    private func gridViews() -> Void {
+    private func layerGridViews() -> Void {
         
-        //删除所有对象
-        for i in hGridsArray {
-            i.removeFromSuperview()
-        }
-        for i in vGridsArray {
-            i.removeFromSuperview()
-        }
-        hGridsArray.removeAll()
-        vGridsArray.removeAll()
-        //是否为空？
-        if nil != gridView {
-            gridView.removeFromSuperview()
-            gridView = nil
-        }
-        //线条总数
-        let tempCount = tView.MAX_COUNT / 2
-        let stepVal = 2.0 * tView.stepVal
         //网格
         gridView = UIView(frame: CGRect(origin: yAxisView.frame.origin,
-                                        size: CGSize(width: CGFloat(tempCount) * stepVal + NSHfhVar.whSeparator,
-                                                     height: yAxisView.frame.size.height)))
+                                        size: CGSize(width: tView.frame.size.width, height: yAxisView.frame.size.height)))
         gridView.isHidden = true
+        gridView.clipsToBounds = true
         //竖线大小
         let lSize = CGSize(width: NSHfhVar.whSeparator, height: gridView.frame.height)
-        //创建
-        for i in 0 ..< tempCount {
-            let lineView = UIView(frame: CGRect(origin: CGPoint(x: CGFloat(i + 1) * stepVal, y: 0.0), size: lSize))
+        for i in stride(from: 0, to: tView.MAX_COUNT, by: 2) {
+            let lineView = UIView(frame: CGRect(origin: CGPoint(x: CGFloat(i + 2) * tView.stepVal, y: 0.0), size: lSize))
             lineView.backgroundColor = UIColor.white
             //保存、添加
             vGridsArray.append(lineView)
@@ -994,37 +899,61 @@ fileprivate class HomeTrendView: HomeContentView {
         //添加
         self.addSubview(gridView)
     }
+    
+    private func resizeGridViews() -> Void {
+        
+        //是否为空？
+        if nil == gridView {
+            return
+        }
+        //RECT值
+        let rect = CGRect(origin: yAxisView.frame.origin,
+                          size: CGSize(width: tView.frame.size.width, height: yAxisView.frame.size.height))
+        //动画方式
+        UIView.animate(withDuration: 0.25) {
+            self.gridView.frame = rect
+        }
+        //横线线大小
+        let hSize = CGSize(width: gridView.frame.size.width, height: NSHfhVar.whSeparator)
+        let hStepVal = 5.0 + 0.5 * yAxisArray.first!.frame.size.height
+        for i in 0 ..< hGridsArray.count {
+            hGridsArray[i].frame = CGRect(origin:CGPoint(x: 0.0, y: yAxisArray[i].frame.origin.y - tView.frame.origin.y + hStepVal),
+                                          size: hSize)
+        }
+        //竖线大小
+        let lSize = CGSize(width: NSHfhVar.whSeparator, height: gridView.frame.height)
+        let stepVal = gridView.frame.size.width / CGFloat(vGridsArray.count)
+        for i in 0 ..< vGridsArray.count {
+            vGridsArray[i].frame = CGRect(origin: CGPoint(x: CGFloat(i + 1) * stepVal, y: 0.0), size: lSize)
+        }
+    }
 }
 
 // MARK: -
 
 fileprivate class TradeView: UIView {
     
-    //起点y值
-    private var yOffset: CGFloat = 0.0, yRatio: CGFloat = 0.0
-    //当前最小大温度
-    private var min: CGFloat = 0.0, max: CGFloat = 0.0
     //步长
     private(set) var stepVal: CGFloat = 10.0
-    //线条绘制颜色
-    private let strokeColor = NSHfhFunc.colorHex(intVal: NSHfhVar.themeColor).cgColor
     //最大值
     private(set) var MAX_COUNT: Int = 0
-    //数据列表
-    private var valuesArray = Array<CGFloat>()
     //点数
     private(set) var ptsCount: Int = 0
+    //数据列表
+    private var valuesArray = Array<CGFloat>()
+    //起点y值
+    private var yRatio: CGFloat = 0.0
+    //线条绘制颜色
+    private let strokeColor = NSHfhFunc.colorHex(intVal: NSHfhVar.themeColor).cgColor
     
     override var frame: CGRect {
         //计算几个值
         didSet {
             let size = self.frame.size
+            //比例值
+            yRatio = size.height / NSHfhVar.highBoundary
             //个数
             MAX_COUNT = Int(size.width / stepVal)
-            //起始y值
-            yOffset = size.height
-            //重置值
-            resetData()
         }
     }
     
@@ -1052,21 +981,6 @@ fileprivate class TradeView: UIView {
         ptsCount = 0
     }
     
-    private func resetData() -> Void {
-        
-        //本地设置
-        let usrDefault = UserDefaults.standard
-        //是否为空？
-        guard let tempData = usrDefault.dictionary(forKey: NSHfhVar.SETTING_VALUES_KEY) else {
-            return
-        }
-        //当前最小大温度，注：这里最小温度还是按0.0进行计算
-        //min = tempData[NSHfhVar.MIN_TMPT_KEY] as? CGFloat ?? 0.0
-        max = tempData[NSHfhVar.MAX_TMPT_KEY] as? CGFloat ?? 0.0
-        //比例
-        yRatio = yOffset / (abs(min) + abs(max))
-    }
-    
     override func draw(_ rect: CGRect) {
         
         //是否为0？
@@ -1092,10 +1006,10 @@ fileprivate class TradeView: UIView {
         //路径
         let paths = CGMutablePath()
         //设置起始点
-        paths.move(to: CGPoint.init(x: 0.0, y: yOffset - valuesArray.first! * yRatio))
+        paths.move(to: CGPoint.init(x: 0.0, y: self.frame.size.height - valuesArray.first! * yRatio))
         //添加路径
         for i in 1 ..< valuesArray.count {
-            paths.addLine(to: CGPoint.init(x: CGFloat(i) * stepVal, y: yOffset - valuesArray[i] * yRatio))
+            paths.addLine(to: CGPoint.init(x: CGFloat(i) * stepVal, y: self.frame.size.height - valuesArray[i] * yRatio))
         }
         //返回
         return paths

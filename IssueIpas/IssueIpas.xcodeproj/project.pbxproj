@@ -19,6 +19,7 @@
 		D6E5E6882180000F005D72D4 /* GovernmentNN.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E6822180000F005D72D4 /* GovernmentNN.plist */; };
 		D6E5E6892180000F005D72D4 /* BS5Kygd.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E6832180000F005D72D4 /* BS5Kygd.plist */; };
 		D6E5E68B21800023005D72D4 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E68A21800023005D72D4 /* index.html */; };
+		D6E5E68D21804E16005D72D4 /* GZTaxiOperate.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E68C21804E16005D72D4 /* GZTaxiOperate.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		D6E5E6822180000F005D72D4 /* GovernmentNN.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GovernmentNN.plist; path = ../../../plists/GovernmentNN.plist; sourceTree = "<group>"; };
 		D6E5E6832180000F005D72D4 /* BS5Kygd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Kygd.plist; path = ../../../plists/BS5Kygd.plist; sourceTree = "<group>"; };
 		D6E5E68A21800023005D72D4 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = index.html; path = ../../../qhzq.github.io/index.html; sourceTree = "<group>"; };
+		D6E5E68C21804E16005D72D4 /* GZTaxiOperate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = GZTaxiOperate.plist; path = ../../../plists/GZTaxiOperate.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				D6E5E67E2180000F005D72D4 /* BS5SBus.plist */,
 				D6E5E6802180000F005D72D4 /* BS5School.plist */,
 				D6E5E6822180000F005D72D4 /* GovernmentNN.plist */,
+				D6E5E68C21804E16005D72D4 /* GZTaxiOperate.plist */,
 			);
 			path = IssueIpas;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 				D6E5E6882180000F005D72D4 /* GovernmentNN.plist in Resources */,
 				D61B5B49217D71700022BD5E /* Assets.xcassets in Resources */,
 				D61B5B47217D716F0022BD5E /* Main.storyboard in Resources */,
+				D6E5E68D21804E16005D72D4 /* GZTaxiOperate.plist in Resources */,
 				D6E5E6862180000F005D72D4 /* BS5School.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
