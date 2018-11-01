@@ -160,16 +160,16 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
     private func rightItem() -> UIBarButtonItem {
         
         let hVal: CGFloat = 44.0, imgWH = 0.45 * hVal
-        //文本宽度
-        let wLabel: CGFloat = 74.0
         //背景
         let bgView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: NSHfhVar.scWidth / 4.0, height: hVal))
+        //文本宽度
+        let wLabel: CGFloat = bgView.frame.size.width - imgWH - 5.0
         //消息tag图标
         let imageView = UIImageView(frame: CGRect(x: bgView.frame.size.width - imgWH, y: 0.5 * (bgView.frame.size.height - imgWH),
                                                   width: imgWH, height: imgWH))
         imageView.image = UIImage(named: "db_home_right_bar_item")
         //文本
-        stateLabel = UILabel(frame: CGRect(x: imageView.frame.origin.x - wLabel - 5.0, y: 0.0, width: wLabel, height: hVal))
+        stateLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: wLabel, height: hVal))
         stateLabel.textColor = UIColor.white
         stateLabel.text = "搜索设备"
         stateLabel.font = UIFont.systemFont(ofSize: 15.0)
@@ -195,8 +195,8 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
     
     @objc private func rightBarItemRecognizer(_ sender: UITapGestureRecognizer) -> Void {
         
-        //是否连接成功？
-        if stateLabel.text == "连接成功" {
+        //是否连接成功？/*0-未连接，1-连接成功*/
+        if stateLabel.tag > 0 {
             return
         }
         //设备列表
@@ -419,7 +419,8 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         switch type {
         case .notify:
             //更改状态
-            stateLabel.text = "连接成功"
+            stateLabel.text = "设备已连接"
+            stateLabel.tag = 1 /*0-未连接，1-连接成功*/
             //启动定时器
             requestTimer()
             stateTimer()
@@ -433,6 +434,7 @@ class HomeViewController: UIHfhBaseViewController, NSHfhPeripheralsDelegate {
         case .reset:
             //更改状态
             stateLabel.text = "搜索设备"
+            stateLabel.tag = 0 /*0-未连接，1-连接成功*/
             //断开连接
             NSHfhPeripherals.shared.disconnect()
             //重置
@@ -531,7 +533,7 @@ fileprivate class HomeRateView: HomeContentView {
     //上下左右的值
     private let insets = UIEdgeInsets(top: 10.0, left: 15.0, bottom: 20.0, right: 15.0)
     //线条宽度
-    private let lineWidth: CGFloat = 10.0
+    private let lineWidth: CGFloat = 20.0
     //中心点
     private var centerPt: CGPoint!
     //半径
@@ -593,18 +595,16 @@ fileprivate class HomeRateView: HomeContentView {
         
         //间距
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4.0
+        paragraphStyle.lineSpacing = 2.0
         paragraphStyle.alignment = .center
-        //值
-        let tempVal = NSMutableAttributedString(string: String(format: "%0.1f°C", value), attributes:
-            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 26.0),
-             NSAttributedStringKey.foregroundColor: strokeColor, NSAttributedStringKey.paragraphStyle: paragraphStyle
-            ])
-        tempVal.append(NSAttributedString(string: "\r\n当前温度", attributes:
-            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12.0),
-             NSAttributedStringKey.foregroundColor: NSHfhFunc.colorHex(intVal: NSHfhVar.txt99Color)
-            ]))
         //温度值
+        let tempVal = NSMutableAttributedString(string: "当前温度\r\n", attributes: [NSAttributedStringKey.paragraphStyle: paragraphStyle])
+        tempVal.append(NSAttributedString(string: String(format: "%0.1f", value), attributes:
+            [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 28.0),
+             NSAttributedStringKey.foregroundColor: strokeColor, NSAttributedStringKey.paragraphStyle: paragraphStyle
+            ]))
+        tempVal.append(NSAttributedString(string: "\r\n°C"))
+        //显示
         valueLabel.attributedText = tempVal
         //显示
         bgShapeLayer.isHidden = false
@@ -652,10 +652,7 @@ fileprivate class HomeRateView: HomeContentView {
         //中心点
         centerPt = CGPoint(x: 0.5 * size.width, y: 0.5 * size.height)
         //半径（以最小的值取半径）
-        var minVal = size.width
-        if size.height < minVal { minVal = size.height
-        }
-        radiusVal = 0.45 * minVal
+        radiusVal = 0.35 * (min(size.width, size.height))
     }
     
     private func resetbgShaperLayer() -> Void {
@@ -702,7 +699,9 @@ fileprivate class HomeRateView: HomeContentView {
         //当前温度
         valueLabel = UILabel(frame: rect)
         valueLabel.numberOfLines = 0
+        valueLabel.textColor = UIColor.white
         valueLabel.textAlignment = .center
+        valueLabel.font = UIFont.systemFont(ofSize: 13.0)
         //添加
         self.addSubview(valueLabel)
     }
@@ -790,6 +789,8 @@ fileprivate class HomeTrendView: HomeContentView {
                                         width: size.width - insets.left - insets.right, height: hTotal - insets.top - insets.bottom))
         tView.isHidden = true
         tView.backgroundColor = UIColor.black
+        //该值和y轴的最大刻度值一定要一致，否则在画曲线时会出现BUG，见方法“yAxisViews”中的刻度值
+        tView.maxValue = NSHfhVar.highBoundary
         //添加
         self.addSubview(tView)
         //y轴
@@ -814,44 +815,19 @@ fileprivate class HomeTrendView: HomeContentView {
         tView.setNeedsDisplay()
     }
     
-    private func xAxisViews(in size: CGSize) -> Void {
-        
-        //x轴坐标个数
-        let xAxisCount = tView.MAX_COUNT / 4
-        let wUnit = tView.frame.size.width / CGFloat(xAxisCount)
-        let xVal: CGFloat = insets.left, yVal: CGFloat = tView.frame.maxY
-        for i in 0 ..< xAxisCount {
-            let tempLabel = UILabel(frame: CGRect(x: xVal + CGFloat(i) * wUnit, y: yVal, width: wUnit, height: insets.bottom))
-            tempLabel.textColor = UIColor.white
-            tempLabel.textAlignment = .center
-            tempLabel.font = UIFont.systemFont(ofSize: 12.0)
-            tempLabel.text = "00:00"
-            //保存、添加
-            xAxisArray.append(tempLabel)
-            self.addSubview(tempLabel)
-        }
-        //直线
-        xAxisView = UIView(frame: CGRect(x: yAxisView.frame.origin.x, y: yVal + 0.5, width: tView.frame.size.width, height: 1.0))
-        xAxisView.backgroundColor = UIColor.white
-        //添加
-        self.addSubview(xAxisView)
-    }
-    
     private func yAxisViews(in size: CGSize) -> Void {
         
-        //是否有列表？
-        if yAxisArray.count > 0 {
-            return
-        }
         //创建个数
         let yArray = ["0 ", "10 ", "20 ", "30 ", "40 ", "50 "]
         let yAxisCount: Int = yArray.count
         //平均高度
         let hUnit: CGFloat = tView.frame.size.height / CGFloat(yAxisCount - 1)
         let yVal: CGFloat = tView.frame.origin.y - 0.5 * insets.top
+        //线条/文本颜色
+        let tempColor = UIColor(white: 0.5, alpha: 1.0)
         for i in 0 ..< yAxisCount {
             let tempLabel = UILabel(frame: CGRect(x: 0.0, y: yVal + CGFloat(i) * hUnit, width: insets.left - 8.0, height: insets.top))
-            tempLabel.textColor = UIColor.white
+            tempLabel.textColor = tempColor
             tempLabel.textAlignment = .right
             tempLabel.font = UIFont.systemFont(ofSize: 14.0)
             tempLabel.text = yArray[yAxisCount - i - 1]
@@ -864,7 +840,7 @@ fileprivate class HomeTrendView: HomeContentView {
         yAxisView = UIView(frame: CGRect(x: insets.left, y: tView.frame.origin.y - 5.0/*按实际效果调整，下同*/, width: 1.0,
                                          height: tView.frame.size.height + 10.0))
         yAxisView.isHidden = true
-        yAxisView.backgroundColor = UIColor.white
+        yAxisView.backgroundColor = tempColor
         //添加
         self.addSubview(yAxisView)
     }
@@ -880,7 +856,7 @@ fileprivate class HomeTrendView: HomeContentView {
         let lSize = CGSize(width: NSHfhVar.whSeparator, height: gridView.frame.height)
         for i in stride(from: 0, to: tView.MAX_COUNT, by: 2) {
             let lineView = UIView(frame: CGRect(origin: CGPoint(x: CGFloat(i + 2) * tView.stepVal, y: 0.0), size: lSize))
-            lineView.backgroundColor = UIColor.white
+            lineView.backgroundColor = yAxisView.backgroundColor
             //保存、添加
             vGridsArray.append(lineView)
             gridView.addSubview(lineView)
@@ -891,7 +867,7 @@ fileprivate class HomeTrendView: HomeContentView {
         for i in 0 ..< yAxisArray.count {
             let lineView = UIView(frame: CGRect(origin:
                 CGPoint(x: 0.0, y: yAxisArray[i].frame.origin.y - tView.frame.origin.y + hStepVal), size: hSize))
-            lineView.backgroundColor = UIColor.white
+            lineView.backgroundColor = yAxisView.backgroundColor
             //保存、添加
             hGridsArray.append(lineView)
             gridView.addSubview(lineView)
@@ -947,13 +923,21 @@ fileprivate class TradeView: UIView {
     private let strokeColor = NSHfhFunc.colorHex(intVal: NSHfhVar.themeColor).cgColor
     
     override var frame: CGRect {
-        //计算几个值
+        //计算个数
         didSet {
-            let size = self.frame.size
+            MAX_COUNT = Int(self.frame.size.width / stepVal)
+        }
+    }
+    
+    open var maxValue: CGFloat {
+        //最大值
+        set {
             //比例值
-            yRatio = size.height / NSHfhVar.highBoundary
-            //个数
-            MAX_COUNT = Int(size.width / stepVal)
+            yRatio = self.frame.height / newValue
+        }
+        get {
+            //暂不做处理，这里直接返回0值，如果后续需要，则把set值用变量保存起来，然后返回
+            return 0.0
         }
     }
     

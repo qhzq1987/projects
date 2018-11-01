@@ -5,7 +5,7 @@
 	<array>
 		<dict>
 			<key>name</key>
-			<string>个人信息</string>
+			<string>账号信息</string>
 			<key>tagImage</key>
 			<string>db_my_account_info</string>
 			<key>showIndictor</key>
