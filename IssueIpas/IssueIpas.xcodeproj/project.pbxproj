@@ -12,6 +12,11 @@
 		D61B5B47217D716F0022BD5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B45217D716F0022BD5E /* Main.storyboard */; };
 		D61B5B49217D71700022BD5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B48217D71700022BD5E /* Assets.xcassets */; };
 		D61B5B4C217D71700022BD5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B4A217D71700022BD5E /* LaunchScreen.storyboard */; };
+		D6A6B69A21B7A8CB00CE5E78 /* BS5KyChina.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69621B7A8CB00CE5E78 /* BS5KyChina.plist */; };
+		D6A6B69B21B7A8CB00CE5E78 /* BS5Kygz.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69721B7A8CB00CE5E78 /* BS5Kygz.plist */; };
+		D6A6B69C21B7A8CB00CE5E78 /* BS5Kygxhn.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69821B7A8CB00CE5E78 /* BS5Kygxhn.plist */; };
+		D6A6B69D21B7A8CB00CE5E78 /* BS5Kyhb.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69921B7A8CB00CE5E78 /* BS5Kyhb.plist */; };
+		D6B1D15621AE32730008AE42 /* BS5Wlgd.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6B1D15521AE32730008AE42 /* BS5Wlgd.plist */; };
 		D6E5E6842180000F005D72D4 /* BS5SBus.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E67E2180000F005D72D4 /* BS5SBus.plist */; };
 		D6E5E6852180000F005D72D4 /* BS5Parents.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E67F2180000F005D72D4 /* BS5Parents.plist */; };
 		D6E5E6862180000F005D72D4 /* BS5School.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6E5E6802180000F005D72D4 /* BS5School.plist */; };
@@ -30,6 +35,11 @@
 		D61B5B48217D71700022BD5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D61B5B4B217D71700022BD5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D61B5B4D217D71700022BD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6A6B69621B7A8CB00CE5E78 /* BS5KyChina.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5KyChina.plist; path = ../../../plists/BS5KyChina.plist; sourceTree = "<group>"; };
+		D6A6B69721B7A8CB00CE5E78 /* BS5Kygz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Kygz.plist; path = ../../../plists/BS5Kygz.plist; sourceTree = "<group>"; };
+		D6A6B69821B7A8CB00CE5E78 /* BS5Kygxhn.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Kygxhn.plist; path = ../../../plists/BS5Kygxhn.plist; sourceTree = "<group>"; };
+		D6A6B69921B7A8CB00CE5E78 /* BS5Kyhb.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Kyhb.plist; path = ../../../plists/BS5Kyhb.plist; sourceTree = "<group>"; };
+		D6B1D15521AE32730008AE42 /* BS5Wlgd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Wlgd.plist; path = ../../../plists/BS5Wlgd.plist; sourceTree = "<group>"; };
 		D6E5E67E2180000F005D72D4 /* BS5SBus.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5SBus.plist; path = ../../../plists/BS5SBus.plist; sourceTree = "<group>"; };
 		D6E5E67F2180000F005D72D4 /* BS5Parents.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Parents.plist; path = ../../../plists/BS5Parents.plist; sourceTree = "<group>"; };
 		D6E5E6802180000F005D72D4 /* BS5School.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5School.plist; path = ../../../plists/BS5School.plist; sourceTree = "<group>"; };
@@ -79,8 +89,13 @@
 				D6E5E68A21800023005D72D4 /* index.html */,
 				D6E5E6812180000F005D72D4 /* BS5Govement.plist */,
 				D6E5E6832180000F005D72D4 /* BS5Kygd.plist */,
+				D6A6B69621B7A8CB00CE5E78 /* BS5KyChina.plist */,
+				D6A6B69821B7A8CB00CE5E78 /* BS5Kygxhn.plist */,
+				D6A6B69721B7A8CB00CE5E78 /* BS5Kygz.plist */,
+				D6A6B69921B7A8CB00CE5E78 /* BS5Kyhb.plist */,
 				D6E5E67F2180000F005D72D4 /* BS5Parents.plist */,
 				D6E5E67E2180000F005D72D4 /* BS5SBus.plist */,
+				D6B1D15521AE32730008AE42 /* BS5Wlgd.plist */,
 				D6E5E6802180000F005D72D4 /* BS5School.plist */,
 				D6E5E6822180000F005D72D4 /* GovernmentNN.plist */,
 				D6E5E68C21804E16005D72D4 /* GZTaxiOperate.plist */,
@@ -148,15 +163,20 @@
 			files = (
 				D6E5E6892180000F005D72D4 /* BS5Kygd.plist in Resources */,
 				D61B5B4C217D71700022BD5E /* LaunchScreen.storyboard in Resources */,
+				D6A6B69B21B7A8CB00CE5E78 /* BS5Kygz.plist in Resources */,
 				D6E5E6852180000F005D72D4 /* BS5Parents.plist in Resources */,
 				D6E5E6872180000F005D72D4 /* BS5Govement.plist in Resources */,
 				D6E5E6842180000F005D72D4 /* BS5SBus.plist in Resources */,
+				D6A6B69A21B7A8CB00CE5E78 /* BS5KyChina.plist in Resources */,
 				D6E5E68B21800023005D72D4 /* index.html in Resources */,
 				D6E5E6882180000F005D72D4 /* GovernmentNN.plist in Resources */,
+				D6A6B69C21B7A8CB00CE5E78 /* BS5Kygxhn.plist in Resources */,
 				D61B5B49217D71700022BD5E /* Assets.xcassets in Resources */,
 				D61B5B47217D716F0022BD5E /* Main.storyboard in Resources */,
 				D6E5E68D21804E16005D72D4 /* GZTaxiOperate.plist in Resources */,
 				D6E5E6862180000F005D72D4 /* BS5School.plist in Resources */,
+				D6B1D15621AE32730008AE42 /* BS5Wlgd.plist in Resources */,
+				D6A6B69D21B7A8CB00CE5E78 /* BS5Kyhb.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +339,18 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libx264/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libg729a/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libwebrtc/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libwebrtc/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libwebrtc/lib",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = HeFahu.IssueIpas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -336,6 +368,18 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libx264/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libg729a/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libffmpeg/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libwebrtc/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libwebrtc/lib",
+					"$(USER_LIBRARY_DIR)/Containers/com.tencent.xinWeChat/Data/Library/Application\\ Support/com.tencent.xinWeChat/2.0b4.0.9/1556d79a9ff5d388945439acf4f8081f/Message/MessageTemp/d56f40331e901df8e50dbdf82a5b6ea2/File/jni/libwebrtc/lib",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = HeFahu.IssueIpas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
