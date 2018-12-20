@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60B80E421CB6B970053762D /* BS5Bus.plist in Resources */ = {isa = PBXBuildFile; fileRef = D60B80E321CB6B970053762D /* BS5Bus.plist */; };
 		D61B5B42217D716F0022BD5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61B5B41217D716F0022BD5E /* AppDelegate.swift */; };
 		D61B5B44217D716F0022BD5E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61B5B43217D716F0022BD5E /* ViewController.swift */; };
 		D61B5B47217D716F0022BD5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B45217D716F0022BD5E /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D60B80E321CB6B970053762D /* BS5Bus.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Bus.plist; path = ../../../plists/BS5Bus.plist; sourceTree = "<group>"; };
 		D61B5B3E217D716F0022BD5E /* IssueIpas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueIpas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D61B5B41217D716F0022BD5E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D61B5B43217D716F0022BD5E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				D6B1D15521AE32730008AE42 /* BS5Wlgd.plist */,
 				D6E5E6802180000F005D72D4 /* BS5School.plist */,
 				D6E5E6822180000F005D72D4 /* GovernmentNN.plist */,
+				D60B80E321CB6B970053762D /* BS5Bus.plist */,
 				D6E5E68C21804E16005D72D4 /* GZTaxiOperate.plist */,
 			);
 			path = IssueIpas;
@@ -180,6 +183,7 @@
 				D6E5E68D21804E16005D72D4 /* GZTaxiOperate.plist in Resources */,
 				D6E5E6862180000F005D72D4 /* BS5School.plist in Resources */,
 				D6B1D15621AE32730008AE42 /* BS5Wlgd.plist in Resources */,
+				D60B80E421CB6B970053762D /* BS5Bus.plist in Resources */,
 				D6A6B69D21B7A8CB00CE5E78 /* BS5Kyhb.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
