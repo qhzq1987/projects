@@ -13,6 +13,7 @@
 		D61B5B47217D716F0022BD5E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B45217D716F0022BD5E /* Main.storyboard */; };
 		D61B5B49217D71700022BD5E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B48217D71700022BD5E /* Assets.xcassets */; };
 		D61B5B4C217D71700022BD5E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D61B5B4A217D71700022BD5E /* LaunchScreen.storyboard */; };
+		D65E98F722681B63009DF49F /* ChituMall.plist in Resources */ = {isa = PBXBuildFile; fileRef = D65E98F622681B63009DF49F /* ChituMall.plist */; };
 		D6A6B69A21B7A8CB00CE5E78 /* BS5KyChina.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69621B7A8CB00CE5E78 /* BS5KyChina.plist */; };
 		D6A6B69B21B7A8CB00CE5E78 /* BS5Kygz.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69721B7A8CB00CE5E78 /* BS5Kygz.plist */; };
 		D6A6B69C21B7A8CB00CE5E78 /* BS5Kygx.plist in Resources */ = {isa = PBXBuildFile; fileRef = D6A6B69821B7A8CB00CE5E78 /* BS5Kygx.plist */; };
@@ -39,6 +40,7 @@
 		D61B5B48217D71700022BD5E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D61B5B4B217D71700022BD5E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D61B5B4D217D71700022BD5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D65E98F622681B63009DF49F /* ChituMall.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ChituMall.plist; sourceTree = "<group>"; };
 		D6A6B69621B7A8CB00CE5E78 /* BS5KyChina.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5KyChina.plist; path = ../../../plists/BS5KyChina.plist; sourceTree = "<group>"; };
 		D6A6B69721B7A8CB00CE5E78 /* BS5Kygz.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Kygz.plist; path = ../../../plists/BS5Kygz.plist; sourceTree = "<group>"; };
 		D6A6B69821B7A8CB00CE5E78 /* BS5Kygx.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = BS5Kygx.plist; path = ../../../plists/BS5Kygx.plist; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				D60B80E321CB6B970053762D /* BS5Bus.plist */,
 				D6C2EB782235F41B001809F7 /* BS5Kyqy.plist */,
 				D6E5E68C21804E16005D72D4 /* GZTaxiOperate.plist */,
+				D65E98F622681B63009DF49F /* ChituMall.plist */,
 			);
 			path = IssueIpas;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				D6E5E6842180000F005D72D4 /* BS5SBus.plist in Resources */,
 				D6A6B69A21B7A8CB00CE5E78 /* BS5KyChina.plist in Resources */,
 				D6E5E68B21800023005D72D4 /* index.html in Resources */,
+				D65E98F722681B63009DF49F /* ChituMall.plist in Resources */,
 				D6E5E6882180000F005D72D4 /* GovernmentNN.plist in Resources */,
 				D6C2EB792235F41B001809F7 /* BS5Kyqy.plist in Resources */,
 				D6A6B69C21B7A8CB00CE5E78 /* BS5Kygx.plist in Resources */,
